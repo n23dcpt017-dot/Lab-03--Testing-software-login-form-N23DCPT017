@@ -1,0 +1,10 @@
+| Thành phần           | ID / Selector                               | Ghi chú                   |
+| -------------------- | ------------------------------------------- | ------------------------- |
+| Username field       | `By.id("username")`                         | nhập username             |
+| Password field       | `By.id("password")`                         | nhập password             |
+| Nút Login            | `By.id("btnLogin")`                         | click để submit           |
+| Thông báo lỗi        | `By.id("msg-error")`                        | hiển thị lỗi              |
+| Thông báo thành công | `By.id("msg-success")`                      | hiển thị khi login đúng   |
+| Link Forgot password | `By.id("linkForgot")`                       | click kiểm tra điều hướng |
+| Link Sign up         | `By.id("linkSignup")`                       | click kiểm tra điều hướng |
+| Nút social login     | `#btnFacebook`, `#btnTwitter`, `#btnGoogle` | kiểm tra hiển thị & click |

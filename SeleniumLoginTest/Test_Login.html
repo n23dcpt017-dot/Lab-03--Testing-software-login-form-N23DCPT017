@@ -1,0 +1,143 @@
+html: 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <style>
+    :root{
+      --bg1:#6a11cb; /* tím */
+      --bg2:#2575fc; /* xanh */
+      --card:#ffffff;
+      --text:#2b2b2b;
+      --muted:#8a8a8a;
+      --line:#e9e9e9;
+      --btn1:#2bd2ff; /* gradient nút */
+      --btn2:#7a5cf4;
+      --btn-hover:#6a49f0;
+      --danger:#d93025;
+      --success:#1e8e3e;
+    }
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    body{margin:0;min-height:100svh;background:linear-gradient(135deg,var(--bg2),var(--bg1));display:grid;place-items:center}
+
+    .card{width:min(430px,92vw);background:var(--card);border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.18);padding:36px 34px;}
+    h1{margin:0 0 24px;text-align:center;font-size:36px;color:#111}
+
+    .field{position:relative;margin:14px 0}
+    .field label{display:block;font-size:13px;color:#666;margin:0 0 8px}
+    .control{position:relative}
+    .control svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.55}
+    input[type="text"],input[type="password"],input[type="email"]{
+      width:100%;padding:14px 14px 14px 40px;border:1px solid var(--line);border-radius:10px;font-size:15px;color:var(--text);background:#fff;
+    }
+    input:focus{outline:none;border-color:#b6c7ff;box-shadow:0 0 0 4px rgba(124,101,255,.15)}
+    .row{display:flex;justify-content:space-between;align-items:center;margin:4px 0 8px}
+    .row a{font-size:13px;color:#666;text-decoration:none}
+    .row a:hover{text-decoration:underline}
+
+    .btn{width:100%;padding:14px 18px;border:0;color:#fff;border-radius:24px;font-weight:700;letter-spacing:.4px;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--btn1),var(--btn2));}
+    .btn-primary:hover{filter:brightness(1.03)}
+
+    .divider{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:18px 0}
+    .divider::before,.divider::after{content:"";height:1px;background:var(--line)}
+    .divider span{font-size:12px;color:#777}
+
+    .social{display:flex;justify-content:center;gap:14px}
+    .social button{width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;background:#f4f5f7}
+    .social button:hover{filter:brightness(.96)}
+
+    .signup{margin-top:24px;text-align:center}
+    .signup a{color:#666;text-decoration:none;font-weight:600}
+    .signup a:hover{text-decoration:underline}
+
+    .msg{display:none;margin:8px 0 0;font-size:14px}
+    .msg.error{color:var(--danger)}
+    .msg.success{color:var(--success)}
+  </style>
+</head>
+<body>
+  <main class="card" id="login-card" aria-label="Login Card">
+    <h1 id="title-login">Login</h1>
+
+    <form id="login-form" novalidate>
+      <div class="field">
+        <label for="username">Username</label>
+        <div class="control">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5Zm0 2c-4.418 0-8 2.239-8 5v2h16v-2c0-2.761-3.582-5-8-5Z" fill="currentColor"/></svg>
+          <input id="username" name="username" type="text" placeholder="Type your username" autocomplete="username" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="row" style="margin-bottom:8px">
+          <label for="password" style="margin:0">Password</label>
+          <a id="linkForgot" href="#" aria-label="Forgot password?">Forgot password?</a>
+        </div>
+        <div class="control">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17 8h-1V6a4 4 0 1 0-8 0v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2Zm-7-2a2 2 0 1 1 4 0v2H10V6Z" fill="currentColor"/></svg>
+          <input id="password" name="password" type="password" placeholder="Type your password" autocomplete="current-password" required />
+        </div>
+      </div>
+
+      <p id="msg-error" class="msg error" role="alert">Invalid credentials.</p>
+      <p id="msg-success" class="msg success" role="status">Login success!</p>
+
+      <button id="btnLogin" class="btn btn-primary" type="submit">LOGIN</button>
+
+      <div class="divider"><span>Or Sign Up Using</span></div>
+
+      <div class="social" aria-label="Social sign in">
+        <button id="btnFacebook" type="button" aria-label="Sign in with Facebook" title="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.563 9.876v-6.988H7.898V12h2.539V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.563V12h2.773l-.443 2.888h-2.33v6.988A10 10 0 0 0 22 12Z"/></svg>
+        </button>
+        <button id="btnTwitter" type="button" aria-label="Sign in with Twitter" title="Twitter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.46 6c-.77.34-1.6.57-2.46.67a4.27 4.27 0 0 0 1.88-2.36 8.48 8.48 0 0 1-2.7 1.03 4.24 4.24 0 0 0-7.22 3.86A12.05 12.05 0 0 1 3.15 4.6a4.23 4.23 0 0 0 1.31 5.66 4.2 4.2 0 0 1-1.92-.53v.05a4.24 4.24 0 0 0 3.4 4.16 4.27 4.27 0 0 1-1.91.07 4.24 4.24 0 0 0 3.96 2.95A8.51 8.51 0 0 1 2 19.54 12.02 12.02 0 0 0 8.29 21c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.37-.01-.55A8.33 8.33 0 0 0 22.46 6Z"/></svg>
+        </button>
+        <button id="btnGoogle" type="button" aria-label="Sign in with Google" title="Google">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M21.35 11.1h-9.17v2.98h5.26c-.23 1.35-1.57 3.97-5.26 3.97-3.17 0-5.76-2.62-5.76-5.85s2.6-5.85 5.76-5.85c1.8 0 3 0.77 3.69 1.44l2.52-2.43C16.88 3.7 15 2.88 12.18 2.88 6.98 2.88 2.76 7.1 2.76 12.3s4.22 9.42 9.42 9.42c5.44 0 9.03-3.82 9.03-9.2 0-.62-.07-1.08-.17-1.42Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <div class="signup" aria-label="Sign up">
+        <div class="divider" style="margin-top:22px"><span>Or Sign Up Using</span></div>
+        <a id="linkSignup" href="#">SIGN UP</a>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // Mô phỏng user store cho thực hành Selenium
+    const USERS = [{ username: 'sv1@ptit.edu.vn', password: 'P@ssw0rd' }];
+
+    const form = document.getElementById('login-form');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const msgError = document.getElementById('msg-error');
+    const msgSuccess = document.getElementById('msg-success');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      msgError.style.display = 'none';
+      msgSuccess.style.display = 'none';
+
+      if(!username.value.trim() || !password.value.trim()){
+        msgError.textContent = 'Please fill all required fields.';
+        msgError.style.display = 'block';
+        return;
+      }
+
+      const ok = USERS.some(u => (u.username === username.value.trim()) && (u.password === password.value));
+      if(ok){
+        msgSuccess.style.display = 'block';
+        setTimeout(()=>{ window.location.href = 'dashboard.html'; }, 700);
+      } else {
+        msgError.textContent = 'Invalid credentials.';
+        msgError.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

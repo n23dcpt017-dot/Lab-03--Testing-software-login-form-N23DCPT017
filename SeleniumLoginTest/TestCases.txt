@@ -1,0 +1,8 @@
+| STT | Tên Test                         | Dữ liệu đầu vào                                       | Kết quả mong đợi                                                      |
+| --- | -------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------- |
+| 1   | Đăng nhập thành công             | username: `sv1@ptit.edu.vn` <br> password: `P@ssw0rd` | Hiện `#msg-success` và chuyển sang `dashboard.html`                   |
+| 2   | Sai thông tin đăng nhập          | username: `sv1@ptit.edu.vn` <br> password: `abc123`   | Hiện `#msg-error` với text `Invalid credentials.`                     |
+| 3   | Bỏ trống username/password       | để trống một hoặc cả hai                              | Hiện `#msg-error` với text `Please fill all required fields.`         |
+| 4   | Kiểm tra link “Forgot password?” | click `#linkForgot`                                   | Link tồn tại và có thể click (giữ nguyên trang vì chưa có trang thật) |
+| 5   | Kiểm tra link “SIGN UP”          | click `#linkSignup`                                   | Link tồn tại và có thể click (hiện trang trắng vì href="#")           |
+| 6   | Kiểm tra nút social login        | 3 nút `#btnFacebook`, `#btnTwitter`, `#btnGoogle`     | Cả 3 nút hiển thị và có thể click được                                |
